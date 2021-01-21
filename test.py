@@ -1,30 +1,36 @@
-n, m= map(int, input().split())
-
+n, k = map(int, input().split())
 result = 0
 
-# using min(), max()
-for i in range(n):
-    data = list(map(int, input().split()))
-    min_value = min(data)
-    result = max(result, min_value)
+# solution 1
+while True:
+    target = (n // k) * k
+    result += (n - target)
+    n = target
 
+    if n < k:
+        break
+    result += 1
+    n //= k
+
+result += (n - 1)
 print(result)
 
 
-# without using min(), max()
+# solution 2
 """
-arr = []
-for i in range(n):
-    arr.append(list(map(int, input().split())))
+n, k = map(int, input().split())
 
-for i in arr:
-    min = 10001
-    max = 0
-    for j in i:
-        if j < min:
-            min = j
-    if min > max:
-        max = min
+count = 0
+while True:
+    if n == 1:
+        break
+    elif n % k == 0:
+        n = n // k
+        count += 1
+    else:
+        n = n - 1
+        count += 1
 
-print(max)
+
+print(count)
 """
