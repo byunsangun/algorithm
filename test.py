@@ -1,36 +1,49 @@
-n, k = map(int, input().split())
-result = 0
+#solution 1
+n = int(input())
+x, y = 1, 1
+plans = input().split()
 
-# solution 1
-while True:
-    target = (n // k) * k
-    result += (n - target)
-    n = target
+dx = [0,0, -1, 1]
+dy = [-1, 1, 0, 0]
+move_types = ['L', 'R', 'U', 'D']
 
-    if n < k:
-        break
-    result += 1
-    n //= k
+for plan in plans:
+    for i in range(len(move_types)):
+        if plan == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
 
-result += (n - 1)
-print(result)
+    if nx < 1 or ny < 1 or nx > n or nx > y:
+        continue
+
+    x, y = nx, ny
+
+print(x,y)
 
 
-# solution 2
+#solution 2
 """
-n, k = map(int, input().split())
+n = int(input())
+arr = list(input().split())
 
-count = 0
-while True:
-    if n == 1:
-        break
-    elif n % k == 0:
-        n = n // k
-        count += 1
-    else:
-        n = n - 1
-        count += 1
+x = 1
+y = 1
 
+for i in arr:
+    if i == 'R':
+        if x < n:
+            x += 1
+    elif i == 'L':
+        if x > 1:
+            x -= 1
+    elif i == 'U':
+        if y > 1:
+            y -= 1
+    elif i == 'D':
+        if y < n:
+            y += 1
 
-print(count)
+print(y, x)
 """
+
+
