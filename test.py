@@ -1,41 +1,30 @@
-n, m, k = map(int, input().split())
-arr = list(map(int,input().split()))
-arr.sort()
+n, m= map(int, input().split())
 
+result = 0
 
-""" 1st way by using loop
-first = arr[n-1]
-second = arr[n-2]
-temp = 0
-sum = 0
+# using min(), max()
+for i in range(n):
+    data = list(map(int, input().split()))
+    min_value = min(data)
+    result = max(result, min_value)
 
-for i in range(m):
-    if temp < k:
-        sum = sum + first
-        temp = temp + 1
-    else:
-        temp = 0
-        sum = sum + second
-
-print(sum)
-"""
-
-
-# 2nd way which is better than first one
-first = arr[n-1]
-second = arr[n-2]
-
-total_first = int(m / (k+1)) * k
-total_second = int(m / (k+1))
-remain_first = int(m % (k+1))
-
-
-result = (first * (total_first + remain_first)) + (second * total_second)
 print(result)
 
 
+# without using min(), max()
+"""
+arr = []
+for i in range(n):
+    arr.append(list(map(int, input().split())))
 
+for i in arr:
+    min = 10001
+    max = 0
+    for j in i:
+        if j < min:
+            min = j
+    if min > max:
+        max = min
 
-
-
-
+print(max)
+"""
