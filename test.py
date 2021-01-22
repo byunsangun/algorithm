@@ -1,49 +1,40 @@
-#solution 1
-n = int(input())
-x, y = 1, 1
-plans = input().split()
 
-dx = [0,0, -1, 1]
-dy = [-1, 1, 0, 0]
-move_types = ['L', 'R', 'U', 'D']
+h = int(input())
+count = 0
 
-for plan in plans:
-    for i in range(len(move_types)):
-        if plan == move_types[i]:
-            nx = x + dx[i]
-            ny = y + dy[i]
+for i in range(h+1):
+    for j in range(60):
+        for k in range(60):
+            if '3' in str(i) + str(j) + str(k):
+                count += 1
 
-    if nx < 1 or ny < 1 or nx > n or nx > y:
-        continue
-
-    x, y = nx, ny
-
-print(x,y)
+print(count)
 
 
-#solution 2
 """
 n = int(input())
-arr = list(input().split())
+result = 0
 
-x = 1
-y = 1
+for hour in range(0, n+1):
+    first_hour = hour // 10
+    second_hour = hour % 10
+    if first_hour == 3 or second_hour == 3:
+        result += 3600
+        print("Time : ", hour, minute, second, " HOUR result : ", result)
+    else:
+        for minute in range(0, 60):
+            first_minute = minute // 10
+            second_minute = minute % 10
+            if first_minute == 3 or second_minute == 3:
+                result += 60
+                print("Time : ", hour, minute, second, " MINUTE result : ", result)
+            else:
+                for second in range(0,60):
+                    first_second = second // 10
+                    second_second = second % 10
+                    if first_second == 3 or second_second == 3:
+                        result += 1
+                        print("Time : ", hour, minute, second, " SECOND result : ", result)
 
-for i in arr:
-    if i == 'R':
-        if x < n:
-            x += 1
-    elif i == 'L':
-        if x > 1:
-            x -= 1
-    elif i == 'U':
-        if y > 1:
-            y -= 1
-    elif i == 'D':
-        if y < n:
-            y += 1
-
-print(y, x)
+print(result)
 """
-
-
