@@ -1,9 +1,12 @@
 n = int(input())
 
-arr = []
-
+array = []
 for _ in range(n):
-    arr.append(int(input()))
+    input_data = input().split()
+    array.append((input_data[0], int(input_data[1])))
 
-arr = sorted(arr, reverse=True)
-print(arr)
+
+array = sorted(array, key = lambda x : x[1])
+
+for student in array:
+    print(student[0], end=' ')
