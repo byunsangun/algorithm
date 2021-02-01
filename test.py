@@ -1,15 +1,28 @@
-n, k = map(int, input().split())
+def binary_search(array, target, start, end):
+    if start > end:
+        return None
 
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
+    mid = (start + end) // 2
 
-a.sort()
-b.sort(reverse=True)
-
-for i in range(k):
-    if a[i] < b[i]:
-        a[i], b[i] = b[i], a[i]
+    if array[mid] == target:
+        return mid
+    elif array[mid] > target:
+        return binary_search(array, target, start, mid - 1)
     else:
-        break
+        return binary_search(array, target, mid + 1, end)
 
-print(sum(a))
+
+n = int(input())
+array = list(map(int, input().split()))
+array.sort()
+
+m = int(input())
+require = list(map(int, input().split()))
+
+
+for item in require:
+    temp = binary_search(array, item, 0, len(array)-1)
+    if temp == None:
+        print("no", end=' ')
+    else:
+        print("yes", end=' ')
