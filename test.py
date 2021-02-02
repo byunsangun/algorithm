@@ -1,28 +1,51 @@
-def binary_search(array, target, start, end):
+n, m = map(int, input().split())
+array = list(map(int,input().split()))
+
+array.sort()
+
+
+def binary_search(array, target, start ,end):
     if start > end:
         return None
 
     mid = (start + end) // 2
+    sum = 0
 
-    if array[mid] == target:
+    for i in array:
+        if i > mid:
+            sum += i - mid
+
+    if sum == target:
         return mid
-    elif array[mid] > target:
-        return binary_search(array, target, start, mid - 1)
-    else:
+    elif sum > target:
         return binary_search(array, target, mid + 1, end)
-
-
-n = int(input())
-array = list(map(int, input().split()))
-array.sort()
-
-m = int(input())
-require = list(map(int, input().split()))
-
-
-for item in require:
-    temp = binary_search(array, item, 0, len(array)-1)
-    if temp == None:
-        print("no", end=' ')
     else:
-        print("yes", end=' ')
+        return binary_search(array, target, start, mid - 1)
+
+
+result = binary_search(array, m, 0, max(array))
+print("result : ", result)
+
+
+
+
+
+"""
+순차 탐색
+standard = max(array)
+
+while standard>0:
+    sum = 0
+    for i in array:
+        if (i - standard) > 0:
+            sum += i - standard
+
+    if sum >= m:
+        break
+    else:
+        standard -= 1
+
+
+print("standard : ", standard)
+"""
+
