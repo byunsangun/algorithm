@@ -1,51 +1,23 @@
-n, m = map(int, input().split())
-array = list(map(int,input().split()))
+x = int(input())
 
-array.sort()
+d = [0] * 30001
 
+for i in range(2, x+1):
 
-def binary_search(array, target, start ,end):
-    if start > end:
-        return None
+    #현재의 수에서 1을 빼는 경우
+    d[i] = d[i - 1] + 1
 
-    mid = (start + end) // 2
-    sum = 0
+    # 현재의 수가 2로 나누어 지는 경우
+    if i % 2 == 0:
+        d[i] = min(d[i], d[i//2] + 1)
 
-    for i in array:
-        if i > mid:
-            sum += i - mid
+    # 현재의 수가 3로 나누어 지는 경우
+    if i % 3 == 0:
+        d[i] = min(d[i], d[i//3] + 1)
 
-    if sum == target:
-        return mid
-    elif sum > target:
-        return binary_search(array, target, mid + 1, end)
-    else:
-        return binary_search(array, target, start, mid - 1)
+    # 현재의 수가 5로 나누어 지는 경우
+    if i % 5 == 0:
+        d[i] = min(d[i], d[i//5] + 1)
 
 
-result = binary_search(array, m, 0, max(array))
-print("result : ", result)
-
-
-
-
-
-"""
-순차 탐색
-standard = max(array)
-
-while standard>0:
-    sum = 0
-    for i in array:
-        if (i - standard) > 0:
-            sum += i - standard
-
-    if sum >= m:
-        break
-    else:
-        standard -= 1
-
-
-print("standard : ", standard)
-"""
-
+print(d[x])
