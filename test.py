@@ -1,17 +1,12 @@
 n = int(input())
-array = list(map(int, input().split()))
 
-d = [0] * 101
-d[1] = array[0]
-d[2] = max(array[0], array[1])
+d = [0] * 1001
+
+d[1] = 1
+d[2] = 3
 
 for i in range(3, n+1):
-    d[i] = max(d[i-2] + array[i-1] , d[i-1])
-
-
-print(d[n])
-
-
+    d[i] = d[i - 2] * 2 + d[i - 1]
 
 
 
